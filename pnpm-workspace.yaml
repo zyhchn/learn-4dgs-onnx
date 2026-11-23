@@ -1,0 +1,6 @@
+allowBuilds:
+  esbuild: true
+# 让 esbuild 的安装脚本可以执行（Vite 依赖它下载/校验平台二进制）。
+# pnpm v10+ 起，这类设置统一放在 pnpm-workspace.yaml 里。
+onlyBuiltDependencies:
+  - esbuild

@@ -1,0 +1,22 @@
+{
+    "name": "onnx-demo",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "description": "路线 B 教学 Demo：用 WebGPU compute 手写 HexPlane + MLP 神经形变场前向（源自 mutant.onnx），把形变后的高斯直接写进渲染器读取的 storage buffer，零回读。",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview",
+        "typecheck": "tsc --noEmit"
+    },
+    "dependencies": {
+        "three": "^0.166.1"
+    },
+    "devDependencies": {
+        "@types/three": "^0.166.0",
+        "@webgpu/types": "^0.1.40",
+        "typescript": "^5.6.0",
+        "vite": "^7.0.0"
+    }
+}

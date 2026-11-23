@@ -1,0 +1,48 @@
+<!DOCTYPE html> <!-- 声明为 HTML5 文档 -->
+<html lang="zh-CN"> <!-- 文档根元素，语言设为简体中文 -->
+
+<head> <!-- 文档头部：元信息、标题与样式 -->
+    <meta charset="utf-8" /> <!-- 使用 UTF-8 编码，保证中文与特殊符号正常显示 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" /> <!-- 移动端视口：宽度跟随设备、初始缩放 1 -->
+    <title>4dgs 神经形变场（HexPlane + MLP）</title> <!-- 浏览器标签页标题 -->
+    <style> 
+        /* 页面只有一个铺满窗口的 canvas，没有任何按钮/面板/标注。 */
+        html, /* 根元素（与 body 一起设置全屏样式） */
+        body { /* 文档主体 */
+            padding: 0;
+            margin: 0; /* 去掉默认外边距，避免出现白边或滚动条 */
+            height: 100%; /* 撑满视口高度 */
+            overflow: hidden; /* 隐藏溢出内容，禁止页面滚动 */
+            background: #0e1014; /* 深色背景，作为画布外的底色 */
+        }
+
+        #gpu-canvas { /* WebGPU 渲染画布 */
+            display: block; /* 块级显示，去掉行内元素的底部间隙 */
+            width: 100vw; /* 宽度铺满视口 */
+            height: 100vh; /* 高度铺满视口 */
+            /* 拖拽旋转时避免选中文字 */
+            user-select: none; /* 禁止文本选中，避免拖拽交互时误选 */
+            touch-action: none; /* 禁用触摸默认手势，交互交给我们自己处理 */
+        }
+
+        /* 仅在初始化失败（如浏览器不支持 WebGPU）时显示的一段提示文字 */
+        #error { /* 错误提示层 */
+            display: none; /* 默认隐藏，仅在出错时显示 */
+            position: fixed; /* 固定定位，覆盖整个窗口 */
+            inset: 0; /* 四边贴边，铺满可视区域 */
+            padding: 40px; /* 内容留出内边距 */
+            background: #1a0f0d; /* 暗红色背景，提示“出错”语义 */
+            color: #ffd7cf; /* 浅红色文字，与背景形成对比 */
+            font: 14px/1.9 system-ui, "Microsoft YaHei", sans-serif; /* 字体：系统字体优先，中文回退到雅黑 */
+            white-space: pre-wrap; /* 保留换行并自动折行，便于展示多行报错信息 */
+        }
+    </style> <!-- 内联样式结束 -->
+</head>
+
+<body> <!-- 文档主体开始 -->
+    <canvas id="gpu-canvas"></canvas> <!-- 渲染用的 WebGPU 画布 -->
+    <div id="error"></div> <!-- 初始化失败时的提示容器（默认隐藏） -->
+    <script type="module" src="./src/main.ts"></script> <!-- 以 ES 模块方式加载入口脚本 -->
+</body>
+
+</html> <!-- 文档结束 -->
